@@ -31,7 +31,7 @@ export default {
         'delete-button' : DeleteButton
     },
     data(){
-        return { url: '../../../dist/noPicture.png', id: null }
+        return { url: this.$http.options.root + '/api/Photo?FileName=', id: null }
     },
     created(){
         console.log(this.$http.options.root);
@@ -43,12 +43,12 @@ export default {
             )[0];
             if(photo)
             {
-                this.url = this.$http.options.root + '/api/Photo?FileName=' + photo.FileName;
+                this.url += photo.FileName;
                 this.id = photo.Id;
             }
     },methods:{
         deleted(id){
-            this.url = '';
+            this.url = this.$http.options.root + '/api/Photo?FileName=';
         }
     }
 }
